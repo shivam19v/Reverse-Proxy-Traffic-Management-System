@@ -1,0 +1,14 @@
+routes:
+
+  - path: /
+    targets:
+      - http://backend1:9001
+      - http://backend2:9002
+      - http://backend3:9003
+
+# routes:
+#   - path: /users
+#     target: http://localhost:9001
+
+#   - path: /payments
+#     target: http://localhost:9002

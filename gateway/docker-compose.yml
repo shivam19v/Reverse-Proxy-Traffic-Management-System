@@ -1,0 +1,103 @@
+services:
+
+  gateway:
+    build: .
+    container_name: gateway
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - redis
+      - backend1
+      - backend2
+      - backend3
+
+  redis:
+    image: redis:7-alpine
+
+    container_name: redis
+
+    ports:
+      - "6379:6379"
+
+  backend1:
+    build:
+      context: .
+      dockerfile: services/backend1/Dockerfile
+
+    container_name: backend1
+
+  backend2:
+    build:
+      context: .
+      dockerfile: services/backend2/Dockerfile
+
+    container_name: backend2
+
+  backend3:
+    build:
+      context: .
+      dockerfile: services/backend3/Dockerfile
+
+    container_name: backend3
+
+# version: "3.9"
+
+# services:
+
+#   gateway:
+#     build: .
+#     container_name: gateway
+
+#     ports:
+#       - "8080:8080"
+
+#     depends_on:
+#       - user-service
+#       - payment-service
+
+#   user-service:
+#     build:
+#       context: .
+#       dockerfile: services/user-service/Dockerfile
+
+#     container_name: user-service
+
+#   payment-service:
+#     build:
+#       context: .
+#       dockerfile: services/payment-service/Dockerfile
+
+#     container_name: payment-service
+
+#   redis:
+#     image: redis:7-alpine
+  
+#     container_name: redis
+  
+#     ports:
+#       - "6379:6379"
+
+
+
+# services:
+
+#   gateway:
+#     build: .
+#     ports:
+#       - "8080:8080"
+
+#   user-service:
+#     build:
+#       context: .
+#       dockerfile: services/user-service/Dockerfile
+#     ports:
+#       - "9001:9001"
+
+#   payment-service:
+#     build:
+#       context: .
+#       dockerfile: services/payment-service/Dockerfile
+#     ports:
+#       - "9002:9002"
